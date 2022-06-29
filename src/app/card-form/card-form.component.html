@@ -1,0 +1,38 @@
+<div class="background" *ngFor="let user of users">
+    <div class="card-header">
+        <h2>{{user.entreprise}}</h2>
+        <div class="card">
+            <div class="name">
+                <h3>{{user.nom}} {{user.prenom}}</h3>
+            </div>
+            <div class="info">
+                <p>Mail {{user.mail}}</p>
+                <p>Telephone {{user.phone}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<form [formGroup]="user" (ngSubmit)="onSubmit()">
+    <label for="nom">Nom</label>
+    <input type="text" formControlName="nom">
+    <span *ngIf="forms['nom'].invalid && submitted" >* Nom obligatoire</span>
+    <span *ngIf="forms['nom'].hasError('minlength')">* Votre nom doit comporter au moins deux caractères</span>
+    <label for="prenom">Prenom : </label>
+    <input type="text" formControlName="prenom">
+    <span *ngIf="forms['prenom'].invalid && submitted" >* Prénom obligatoire</span>
+    <span *ngIf="forms['prenom'].hasError('minlength')">* Votre prénom doit comporter au moins deux caractères</span>
+    <label for="mail">Email : </label>
+    <input type="mail" formControlName="mail">
+    <span *ngIf="forms['mail'].invalid && submitted" >* Email obligatoire</span>
+    <label for="entreprise">Entreprise : </label>
+    <input type="text" formControlName="entreprise">
+    <span *ngIf="forms['entreprise'].invalid && submitted" >* Entreprise obligatoire</span>
+    <span *ngIf="forms['entreprise'].hasError('minlength')">* Votre entreprise doit comporter au moins deux caractères</span>
+    <label for="mail">Telephone : </label>
+    <input type="phone" formControlName="phone">
+    <span *ngIf="forms['phone'].invalid && submitted" >* Téléphone obligatoire</span>
+    <span *ngIf="forms['phone'].hasError('minlength')">* Votre téléphone doit comporter au moins dix caractères</span>
+    <button  type="submit">Ajouter un utilisateur + </button>
+</form>
